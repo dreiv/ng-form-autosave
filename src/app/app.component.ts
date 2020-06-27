@@ -16,13 +16,13 @@ export class AppComponent implements OnInit, OnDestroy {
   private unsubscribe = new Subject<void>();
 
   constructor(private persister: PersistanceService) {
-    const formState = this.persister.get('formState');
+    const { name, email, phone, message } = this.persister.get('formState');
 
     this.form = new FormGroup({
-      name: new FormControl(formState.name),
-      email: new FormControl(formState.email),
-      phone: new FormControl(formState.phone),
-      message: new FormControl(formState.message)
+      name: new FormControl(name),
+      email: new FormControl(email),
+      phone: new FormControl(phone),
+      message: new FormControl(message)
     });
   }
 
@@ -35,6 +35,7 @@ export class AppComponent implements OnInit, OnDestroy {
       )
       .subscribe(() => console.log('Saved'));
   }
+
   ngOnDestroy(): void {
     this.unsubscribe.next();
   }
