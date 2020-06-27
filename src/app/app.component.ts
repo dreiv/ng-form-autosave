@@ -13,7 +13,7 @@ import { PersistanceService } from './persistance.service';
 export class AppComponent implements OnInit, OnDestroy {
   form: FormGroup;
 
-  private unsubscribe = new Subject<void>();
+  private unsubscribe$ = new Subject<void>();
 
   constructor(private persister: PersistanceService) {
     const { name, email, phone, message } = this.persister.get('formState');
@@ -31,13 +31,13 @@ export class AppComponent implements OnInit, OnDestroy {
       .pipe(
         auditTime(1000),
         tap((formValue) => this.persister.set('formState', formValue)),
-        takeUntil(this.unsubscribe)
+        takeUntil(this.unsubscribe$)
       )
       .subscribe(() => console.log('Saved'));
   }
 
   ngOnDestroy(): void {
-    this.unsubscribe.next();
+    this.unsubscribe$.next();
   }
 
   onSubmit(): void {
