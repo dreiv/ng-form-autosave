@@ -1,8 +1,10 @@
+$contentWidth: 30rem;
+
 :host {
   display: block;
   margin: 0 auto;
   width: 100%;
-  max-width: 30rem;
+  max-width: $contentWidth;
 }
 
 label {
@@ -10,11 +12,15 @@ label {
   justify-content: space-between;
   margin-bottom: 1rem;
 
+  @media (max-width: $contentWidth) {
+    flex-direction: column;
+  }
+
   &.vertical {
     flex-direction: column;
   }
-}
 
-input {
-  width: 60%;
+  > input {
+    width: 60%;
+  }
 }
