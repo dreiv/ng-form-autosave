@@ -1,1 +1,43 @@
-<h1>Complete form and refresh browser page</h1>
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <h1>Complete form and refresh browser page</h1>
+
+  <label>
+    Full name*
+    <input
+      type="text"
+      formControlName="name"
+      required
+    >
+  </label>
+
+  <label>
+    Email address*
+    <input
+      type="text"
+      formControlName="email"
+      required
+    >
+  </label>
+
+  <label>
+    Phone number
+    <input
+      type="text"
+      formControlName="phone"
+      max-length="11"
+      pattern="[0-9]+"
+    >
+  </label>
+
+  <label class="vertical">
+    Your message*
+    <textarea
+      type="text"
+      formControlName="message"
+      rows="5"
+    >
+    </textarea>
+  </label>
+
+  <input type="submit" value="Send">
+</form>

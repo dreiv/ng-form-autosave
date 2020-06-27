@@ -1,0 +1,20 @@
+:host {
+  display: block;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 30rem;
+}
+
+label {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+
+  &.vertical {
+    flex-direction: column;
+  }
+}
+
+input {
+  width: 60%;
+}
